@@ -8,25 +8,27 @@ import java.io.IOException;
 import java.util.List;
 
 public class FileReader {
-    String FILE_NAME = "C:\\jdbc-connector-master\\jdbc-connector\\src\\main\\resources\\employees.csv";
-    CSVFormat format = CSVFormat.DEFAULT.withDelimiter(',');
-    String PATH = "";
+    String FILE_NAME = "src\\main\\resources\\employees.csv";
+    CSVFormat format = CSVFormat.DEFAULT.withDelimiter(',').withFirstRecordAsHeader();
 
-    public void readFile(List<Employee> list){
-        java.io.FileReader fileReader;
+
+    public List<CSVRecord> readFile(){
+
+        List<CSVRecord> records= null;
         try {
             //gosc przyjmuje plik
-            fileReader = new java.io.FileReader(FILE_NAME);
+            java.io.FileReader fileReader = new java.io.FileReader(FILE_NAME);
             //parsuje
             CSVParser parser = new CSVParser(fileReader,format);
             //rekordy wrzuca do listy
-            List<CSVRecord> records = parser.getRecords();
+            records = parser.getRecords();
             System.out.println("Liczba rekordow: " + records.size());
             fileReader.close();
         }
        catch (IOException e) {
            e.printStackTrace();
        }
+       return records;
 
     }
 }

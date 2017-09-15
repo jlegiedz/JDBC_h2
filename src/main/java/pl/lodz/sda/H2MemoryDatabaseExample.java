@@ -1,12 +1,8 @@
 package pl.lodz.sda;
-
 import java.sql.*;
-
+import static pl.lodz.sda.JdbcConnector.getDBConnection;
 public class H2MemoryDatabaseExample {
-    // h2 mala lokalna baza w pamieci, zazwyczaj uzywana do testow, serwer jest na naszym komputerze
-    private static final String DB_CONNECTION = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
-    private static final String DB_USER = "sa";
-    private static final String DB_PASSWORD = "";
+
 
     public static void main(String[] args) throws Exception {
         try {
@@ -126,12 +122,7 @@ public class H2MemoryDatabaseExample {
         }
     }
 
-    private static Connection getDBConnection() {
-        try {
-            return DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
+
+
+
 }
