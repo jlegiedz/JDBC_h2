@@ -23,7 +23,7 @@ public class MainJDBCConnector {
          List<Employee> employeesListFromCSV = toEmployeeList(records);
          JdbcConnector jdbcConnector = new JdbcConnector();
          jdbcConnector.batchInsert(employeesListFromCSV);
-        try {
+            try {
             printDB();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,11 +56,11 @@ public class MainJDBCConnector {
             Connection connection = getDBConnection(DB.H2);
 
             String createQuery = "CREATE TABLE EMPLOYEE (" +
-                    "ID INT PRIMARY KEY, " +
+                    "ID INT PRIMARY KEY auto_increment, " +
                     "BIRTH_DATE DATE, " +
                     "FIRST_NAME VARCHAR(50), " +
                     "LAST_NAME VARCHAR(50), " +
-                    "GENDER CHAR(1), " +
+                    "GENDER varchar(1), " +
                     "HIRE_DATE DATE)";
 
 
